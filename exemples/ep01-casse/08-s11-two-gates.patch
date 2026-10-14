@@ -1,0 +1,22 @@
+diff --git a/projet/src/Shared/Infrastructure/Http/HealthController.php b/projet/src/Shared/Infrastructure/Http/HealthController.php
+index 9a1b81c..4d99605 100644
+--- a/projet/src/Shared/Infrastructure/Http/HealthController.php
++++ b/projet/src/Shared/Infrastructure/Http/HealthController.php
+@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Attribute\Route;
+ /**
+  * Minimal liveness endpoint: the application boots and answers HTTP requests.
+  */
+-final readonly class HealthController
++readonly class HealthController
+ {
+     #[Route('/health', name: 'health', methods: ['GET'])]
+     public function __invoke(): Response
+@@ -24,7 +24,7 @@ final readonly class HealthController
+     private function jsonResponse(array $payload, int $statusCode): Response
+     {
+         return new Response(
+-            json_encode($payload, JSON_THROW_ON_ERROR),
++            json_encode($payload),
+             $statusCode,
+             ['Content-Type' => 'application/json'],
+         );

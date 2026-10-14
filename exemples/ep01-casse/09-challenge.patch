@@ -1,0 +1,13 @@
+diff --git a/exemples/ep01-mutation/tests/MaxRentalDurationTest.php b/exemples/ep01-mutation/tests/MaxRentalDurationTest.php
+index 53eab59..b5963d7 100644
+--- a/exemples/ep01-mutation/tests/MaxRentalDurationTest.php
++++ b/exemples/ep01-mutation/tests/MaxRentalDurationTest.php
+@@ -13,7 +13,7 @@ final class MaxRentalDurationTest extends TestCase
+     #[DataProvider('allowedDurations')]
+     public function testItAllowsADurationWithinTheLimits(int $days): void
+     {
+-        self::assertTrue((new MaxRentalDuration())->allows($days));
++        self::assertNotNull((new MaxRentalDuration())->allows($days));
+     }
+ 
+     #[DataProvider('refusedDurations')]

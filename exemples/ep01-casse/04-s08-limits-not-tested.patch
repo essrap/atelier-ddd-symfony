@@ -1,0 +1,14 @@
+diff --git a/exemples/ep01-mutation/tests/MaxRentalDurationTest.php b/exemples/ep01-mutation/tests/MaxRentalDurationTest.php
+index 53eab59..59be4a9 100644
+--- a/exemples/ep01-mutation/tests/MaxRentalDurationTest.php
++++ b/exemples/ep01-mutation/tests/MaxRentalDurationTest.php
+@@ -27,9 +27,7 @@ final class MaxRentalDurationTest extends TestCase
+      */
+     public static function allowedDurations(): iterable
+     {
+-        yield 'shortest rental' => [1];
+         yield 'two weeks' => [14];
+-        yield 'longest rental' => [30];
+     }
+ 
+     /**

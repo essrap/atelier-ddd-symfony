@@ -1,0 +1,13 @@
+diff --git a/exemples/ep01-mutation/src/Domain/MaxRentalDuration.php b/exemples/ep01-mutation/src/Domain/MaxRentalDuration.php
+index c810ecf..286d45d 100644
+--- a/exemples/ep01-mutation/src/Domain/MaxRentalDuration.php
++++ b/exemples/ep01-mutation/src/Domain/MaxRentalDuration.php
+@@ -11,7 +11,7 @@ namespace Example\Ep01Mutation\Domain;
+ final readonly class MaxRentalDuration
+ {
+     public const int MIN_DAYS = 1;
+-    public const int MAX_DAYS = 30;
++    public const int MAX_DAYS = 29;
+ 
+     public function allows(int $days): bool
+     {

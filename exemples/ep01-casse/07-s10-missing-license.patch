@@ -1,0 +1,12 @@
+diff --git a/projet/composer.json b/projet/composer.json
+index 0ae380f..765d782 100644
+--- a/projet/composer.json
++++ b/projet/composer.json
+@@ -2,7 +2,6 @@
+     "name": "essrap/tooloc",
+     "description": "Tooloc: equipment rental back end, companion project of the DDD Symfony video series",
+     "type": "project",
+-    "license": "MIT",
+     "minimum-stability": "stable",
+     "prefer-stable": true,
+     "require": {

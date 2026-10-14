@@ -1,0 +1,25 @@
+diff --git a/exemples/ep01-mutation/src/Domain/MaxRentalDuration.php b/exemples/ep01-mutation/src/Domain/MaxRentalDuration.php
+index c810ecf..75be946 100644
+--- a/exemples/ep01-mutation/src/Domain/MaxRentalDuration.php
++++ b/exemples/ep01-mutation/src/Domain/MaxRentalDuration.php
+@@ -4,6 +4,8 @@ declare(strict_types=1);
+ 
+ namespace Example\Ep01Mutation\Domain;
+ 
++use Symfony\Component\HttpFoundation\Request;
++
+ /**
+  * Throwaway rule for episode 1: a rental lasts from 1 to 30 days.
+  * It only exists to show unit tests and mutation testing; it is not part of the Tooloc model.
+@@ -13,6 +15,11 @@ final readonly class MaxRentalDuration
+     public const int MIN_DAYS = 1;
+     public const int MAX_DAYS = 30;
+ 
++    public function allowsRequest(Request $request): bool
++    {
++        return $this->allows($request->query->getInt('days'));
++    }
++
+     public function allows(int $days): bool
+     {
+         return $days >= self::MIN_DAYS && $days <= self::MAX_DAYS;

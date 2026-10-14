@@ -1,0 +1,13 @@
+diff --git a/projet/src/Shared/Infrastructure/Http/HealthController.php b/projet/src/Shared/Infrastructure/Http/HealthController.php
+index 9a1b81c..bed4366 100644
+--- a/projet/src/Shared/Infrastructure/Http/HealthController.php
++++ b/projet/src/Shared/Infrastructure/Http/HealthController.php
+@@ -15,7 +15,7 @@ final readonly class HealthController
+     #[Route('/health', name: 'health', methods: ['GET'])]
+     public function __invoke(): Response
+     {
+-        return $this->jsonResponse(['status' => 'ok'], Response::HTTP_OK);
++        return $this->jsonResponse(['status' => 'ok'], '200');
+     }
+ 
+     /**

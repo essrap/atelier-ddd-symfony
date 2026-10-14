@@ -1,0 +1,13 @@
+diff --git a/projet/src/Shared/Infrastructure/Http/HealthController.php b/projet/src/Shared/Infrastructure/Http/HealthController.php
+index 9a1b81c..95b2639 100644
+--- a/projet/src/Shared/Infrastructure/Http/HealthController.php
++++ b/projet/src/Shared/Infrastructure/Http/HealthController.php
+@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Attribute\Route;
+ /**
+  * Minimal liveness endpoint: the application boots and answers HTTP requests.
+  */
+-final readonly class HealthController
++readonly class HealthController
+ {
+     #[Route('/health', name: 'health', methods: ['GET'])]
+     public function __invoke(): Response

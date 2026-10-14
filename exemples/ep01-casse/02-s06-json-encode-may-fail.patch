@@ -1,0 +1,13 @@
+diff --git a/projet/src/Shared/Infrastructure/Http/HealthController.php b/projet/src/Shared/Infrastructure/Http/HealthController.php
+index 9a1b81c..7f68d66 100644
+--- a/projet/src/Shared/Infrastructure/Http/HealthController.php
++++ b/projet/src/Shared/Infrastructure/Http/HealthController.php
+@@ -24,7 +24,7 @@ final readonly class HealthController
+     private function jsonResponse(array $payload, int $statusCode): Response
+     {
+         return new Response(
+-            json_encode($payload, JSON_THROW_ON_ERROR),
++            json_encode($payload),
+             $statusCode,
+             ['Content-Type' => 'application/json'],
+         );
