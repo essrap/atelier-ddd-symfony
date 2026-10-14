@@ -8,6 +8,7 @@
     },
     "require-dev": {
         "deptrac/deptrac": "^4.7.2",
+        "friendsofphp/php-cs-fixer": "^3.95.27",
         "infection/infection": "^0.35.8",
         "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan": "^2.3.1",
