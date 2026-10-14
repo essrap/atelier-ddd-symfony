@@ -1,0 +1,20 @@
+# Dependencies
+/projet/vendor/
+/exemples/*/vendor/
+
+# Symfony
+/projet/.env.local
+/projet/.env.local.php
+/projet/.env.*.local
+/projet/var/
+
+# Quality tools caches and reports
+.phpunit.cache/
+.php-cs-fixer.cache
+.deptrac.cache
+/exemples/*/var/
+
+# OS and editors
+.DS_Store
+.idea/
+.vscode/
