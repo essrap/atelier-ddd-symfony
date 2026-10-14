@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: docker/php/Dockerfile
-    command: php -S 0.0.0.0:8000 -t public
+    command: sh -c "composer install --no-interaction --no-progress && php -S 0.0.0.0:8000 -t public"
     ports:
       - "${HTTP_PORT:-8000}:8000"
     volumes:
