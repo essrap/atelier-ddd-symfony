@@ -1,0 +1,20 @@
+# Architecture rules. Episode 1: the domain depends neither on Symfony nor on Doctrine.
+# Boundaries between bounded contexts come in episode 3, the full layer rules in episode 17.
+deptrac:
+  paths:
+    - ./src
+  layers:
+    - name: Domain
+      collectors:
+        - type: directory
+          value: src/.*/Domain/.*
+    - name: Symfony
+      collectors:
+        - type: classNameRegex
+          value: '#^Symfony\\#'
+    - name: Doctrine
+      collectors:
+        - type: classNameRegex
+          value: '#^Doctrine\\#'
+  ruleset:
+    Domain: ~

@@ -1,0 +1,21 @@
+# Architecture rules. Episode 1: the domain depends neither on Symfony nor on Doctrine.
+# Same rule as the project, applied to this isolated example.
+# Symfony is installed here on purpose, as in a real project: only Deptrac sees the boundary crossing.
+deptrac:
+  paths:
+    - ./src
+  layers:
+    - name: Domain
+      collectors:
+        - type: directory
+          value: src/Domain/.*
+    - name: Symfony
+      collectors:
+        - type: classNameRegex
+          value: '#^Symfony\\#'
+    - name: Doctrine
+      collectors:
+        - type: classNameRegex
+          value: '#^Doctrine\\#'
+  ruleset:
+    Domain: ~
