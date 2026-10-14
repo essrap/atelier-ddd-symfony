@@ -1,0 +1,33 @@
+name: Quality gates
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: qa-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qa:
+    name: make qa
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+
+      # Same image and same commands as on your machine.
+      - name: Build the PHP image
+        run: docker compose build php
+
+      # Composer checks, PHP-CS-Fixer, PHPStan, Deptrac, PHPUnit, Infection.
+      - name: Run every quality gate
+        run: make qa
+
+      # Coming later in the series:
+      # - database migrations on an empty database (once the project has entities);
+      # - OpenAPI contract check (once the project exposes its API, episodes 21-23).
