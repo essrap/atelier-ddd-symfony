@@ -11,7 +11,7 @@ services:
     volumes:
       - ./:/app
     environment:
-      DATABASE_URL: "postgresql://tooloc:tooloc@database:5432/tooloc?serverVersion=18&charset=utf8"
+      DATABASE_URL: "postgresql://tooloc:${POSTGRES_PASSWORD:-!ChangeMe!}@database:5432/tooloc?serverVersion=18&charset=utf8"
     depends_on:
       database:
         condition: service_healthy
@@ -21,7 +21,7 @@ services:
     environment:
       POSTGRES_DB: tooloc
       POSTGRES_USER: tooloc
-      POSTGRES_PASSWORD: tooloc
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "tooloc", "-d", "tooloc"]
       interval: 5s
