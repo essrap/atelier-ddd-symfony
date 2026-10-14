@@ -1,0 +1,32 @@
+{
+    "name": "essrap/example-ep01-mutation",
+    "description": "Episode 1 example: a trivial business rule to show unit tests and mutation testing",
+    "type": "project",
+    "license": "MIT",
+    "require": {
+        "php": ">=8.5"
+    },
+    "require-dev": {
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan": "^2.3.1",
+        "phpstan/phpstan-phpunit": "^2.1",
+        "phpstan/phpstan-strict-rules": "^2.1",
+        "phpunit/phpunit": "^13.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Example\\Ep01Mutation\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Example\\Ep01Mutation\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
+    }
+}
