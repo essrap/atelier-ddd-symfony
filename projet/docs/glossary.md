@@ -19,4 +19,8 @@ Le code est en anglais, les vidéos en français : ce glossaire fait foi dans le
 | `Dispute` | Litige | Claim opened by a party (damage, delay, non-compliant equipment) | — |
 | `Review` | Avis | Rating and comment left after a rental | — |
 
-Bounded contexts are introduced in episode 2 and the context map in episode 3.
+The `Avoid (code)` column lists words that must not appear in folder, file or enum case names under `src/` (checked by `tests/Architecture/ContextNamingTest.php`).
+
+Bounded contexts and subdomains: [contexts.md](contexts.md). The context map comes in episode 3.
+Contextes et sous-domaines : [contexts.md](contexts.md). La carte des contextes arrive à l'épisode 3.
+

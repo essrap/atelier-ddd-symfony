@@ -30,7 +30,7 @@ Du moins coûteux au plus coûteux, en local comme dans la CI :
 5. PHPUnit
 6. Infection (tests de mutation), score minimal de 85 %
 
-Les décisions d'architecture sont dans [`projet/docs/adr/`](projet/docs/adr/), le vocabulaire métier dans [`projet/docs/glossary.md`](projet/docs/glossary.md).
+Les décisions d'architecture sont dans [`projet/docs/adr/`](projet/docs/adr/), le vocabulaire métier dans [`projet/docs/glossary.md`](projet/docs/glossary.md), les contextes dans [`projet/docs/contexts.md`](projet/docs/contexts.md).
 
 ## Organisation
 
@@ -38,12 +38,13 @@ Les décisions d'architecture sont dans [`projet/docs/adr/`](projet/docs/adr/), 
 - `exemples/` : du code isolé pour les principes qui se montrent mieux hors du projet. Chaque exemple a son propre `composer.json`.
   - `ep01-mutation/` : une règle jetable pour montrer les tests et les tests de mutation.
   - `ep01-casse/` : les cassures de l'épisode 1, à rejouer soi-même, et le défi.
+  - `ep02-casse/` : la cassure de l'épisode 2 (un nom de dossier que le glossaire interdit).
 
-Chaque épisode correspond à un tag `ep-NN` : tu peux reprendre la série à n'importe quel épisode (`git checkout ep-01`).
+Chaque épisode correspond à un tag `ep-NN` : tu peux reprendre la série à n'importe quel épisode (`git checkout ep-02`).
 
-## État au tag `ep-01`
+## État au tag `ep-02`
 
-Le socle qualité est en place : Docker, Symfony, une route `/health`, et tous les garde-fous, en local et en CI. Aucun contexte métier n'est encore codé : c'est l'objet des épisodes suivants.
+Le socle qualité de l'épisode 1, plus le découpage par le métier : sous-domaines et contextes dans [`projet/docs/contexts.md`](projet/docs/contexts.md), trois contextes codés (`Listing`, `Booking`, `Rental`, un enum de statut chacun) et un test de nommage qui garde le glossaire et les dossiers de `src/` cohérents.
 
 ## Licence
 

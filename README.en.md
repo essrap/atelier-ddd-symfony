@@ -30,7 +30,7 @@ From the cheapest to the most expensive, locally and in the CI:
 5. PHPUnit
 6. Infection (mutation testing), minimum score of 85 %
 
-Architecture decisions live in [`projet/docs/adr/`](projet/docs/adr/), the ubiquitous language in [`projet/docs/glossary.md`](projet/docs/glossary.md).
+Architecture decisions live in [`projet/docs/adr/`](projet/docs/adr/), the ubiquitous language in [`projet/docs/glossary.md`](projet/docs/glossary.md), the contexts in [`projet/docs/contexts.md`](projet/docs/contexts.md).
 
 ## Layout
 
@@ -38,12 +38,13 @@ Architecture decisions live in [`projet/docs/adr/`](projet/docs/adr/), the ubiqu
 - `exemples/`: isolated code for principles that are easier to show outside the project. Each example has its own `composer.json`.
   - `ep01-mutation/`: a throwaway rule to show unit tests and mutation testing.
   - `ep01-casse/`: the episode 1 breakages, to replay yourself, and the challenge.
+  - `ep02-casse/`: the episode 2 breakage (a folder name the glossary forbids).
 
-Each episode matches an `ep-NN` tag: you can pick up the series at any episode (`git checkout ep-01`).
+Each episode matches an `ep-NN` tag: you can pick up the series at any episode (`git checkout ep-02`).
 
-## Status at tag `ep-01`
+## Status at tag `ep-02`
 
-The quality foundation is in place: Docker, Symfony, a `/health` route, and every quality gate, locally and in the CI. No bounded context is coded yet: that is what the next episodes are about.
+The episode 1 quality foundation, plus the split by business: subdomains and contexts in [`projet/docs/contexts.md`](projet/docs/contexts.md), three coded contexts (`Listing`, `Booking`, `Rental`, one status enum each) and a naming test that keeps the glossary and the folders of `src/` consistent.
 
 ## License
 
