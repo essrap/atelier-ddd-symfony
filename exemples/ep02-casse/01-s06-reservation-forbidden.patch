@@ -1,0 +1,21 @@
+diff --git a/projet/src/Reservation/Domain/Reservation.php b/projet/src/Reservation/Domain/Reservation.php
+new file mode 100644
+index 0000000..942fed8
+--- /dev/null
++++ b/projet/src/Reservation/Domain/Reservation.php
+@@ -0,0 +1,15 @@
++<?php
++
++declare(strict_types=1);
++
++namespace App\Reservation\Domain;
++
++/**
++ * A renter's commitment on a slot of a listing.
++ */
++final readonly class Reservation
++{
++    public function __construct(
++        public string $listingId,
++    ) {}
++}
