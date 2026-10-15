@@ -21,6 +21,6 @@ Le code est en anglais, les vidéos en français : ce glossaire fait foi dans le
 
 The `Avoid (code)` column lists words that must not appear in folder, file or enum case names under `src/` (checked by `tests/Architecture/ContextNamingTest.php`).
 
-Bounded contexts and subdomains: [contexts.md](contexts.md). The context map comes in episode 3.
-Contextes et sous-domaines : [contexts.md](contexts.md). La carte des contextes arrive à l'épisode 3.
+Bounded contexts and subdomains: [contexts.md](contexts.md); how they relate: [context-map.md](context-map.md).
+Contextes et sous-domaines : [contexts.md](contexts.md) ; leurs relations : [context-map.md](context-map.md).
 

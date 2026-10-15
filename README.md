@@ -26,11 +26,11 @@ Du moins coûteux au plus coûteux, en local comme dans la CI :
 1. `composer validate --strict` et `composer audit`
 2. PHP-CS-Fixer (`@Symfony`, `@PER-CS`) — `make cs-fix` corrige le style
 3. PHPStan au niveau maximal, sans baseline
-4. Deptrac : le domaine ne dépend ni de Symfony ni de Doctrine
+4. Deptrac : aucun contexte n'importe le code d'un autre (seul le noyau partagé est commun), ni Symfony, ni Doctrine
 5. PHPUnit
 6. Infection (tests de mutation), score minimal de 85 %
 
-Les décisions d'architecture sont dans [`projet/docs/adr/`](projet/docs/adr/), le vocabulaire métier dans [`projet/docs/glossary.md`](projet/docs/glossary.md), les contextes dans [`projet/docs/contexts.md`](projet/docs/contexts.md).
+Les décisions d'architecture sont dans [`projet/docs/adr/`](projet/docs/adr/), le vocabulaire métier dans [`projet/docs/glossary.md`](projet/docs/glossary.md), les contextes dans [`projet/docs/contexts.md`](projet/docs/contexts.md), leurs relations dans [`projet/docs/context-map.md`](projet/docs/context-map.md).
 
 ## Organisation
 
@@ -39,12 +39,13 @@ Les décisions d'architecture sont dans [`projet/docs/adr/`](projet/docs/adr/), 
   - `ep01-mutation/` : une règle jetable pour montrer les tests et les tests de mutation.
   - `ep01-casse/` : les cassures de l'épisode 1, à rejouer soi-même, et le défi.
   - `ep02-casse/` : la cassure de l'épisode 2 (un nom de dossier que le glossaire interdit).
+  - `ep03-casse/` : la cassure de l'épisode 3 (un contexte qui importe le code d'un autre).
 
-Chaque épisode correspond à un tag `ep-NN` : tu peux reprendre la série à n'importe quel épisode (`git checkout ep-02`).
+Chaque épisode correspond à un tag `ep-NN` : tu peux reprendre la série à n'importe quel épisode (`git checkout ep-03`).
 
-## État au tag `ep-02`
+## État au tag `ep-03`
 
-Le socle qualité de l'épisode 1, plus le découpage par le métier : sous-domaines et contextes dans [`projet/docs/contexts.md`](projet/docs/contexts.md), trois contextes codés (`Listing`, `Booking`, `Rental`, un enum de statut chacun) et un test de nommage qui garde le glossaire et les dossiers de `src/` cohérents.
+Le socle qualité de l'épisode 1 et le découpage de l'épisode 2 (sept contextes dans [`projet/docs/contexts.md`](projet/docs/contexts.md), trois codés : `Listing`, `Booking`, `Rental`), plus la carte des contextes : leurs relations dans [`projet/docs/context-map.md`](projet/docs/context-map.md), et une couche Deptrac par contexte qui interdit tout import d'un contexte vers un autre.
 
 ## Licence
 

@@ -26,11 +26,11 @@ From the cheapest to the most expensive, locally and in the CI:
 1. `composer validate --strict` and `composer audit`
 2. PHP-CS-Fixer (`@Symfony`, `@PER-CS`) — `make cs-fix` fixes the style
 3. PHPStan at the maximum level, without baseline
-4. Deptrac: the domain depends neither on Symfony nor on Doctrine
+4. Deptrac: no context imports the code of another one (only the shared kernel is common), nor Symfony, nor Doctrine
 5. PHPUnit
 6. Infection (mutation testing), minimum score of 85 %
 
-Architecture decisions live in [`projet/docs/adr/`](projet/docs/adr/), the ubiquitous language in [`projet/docs/glossary.md`](projet/docs/glossary.md), the contexts in [`projet/docs/contexts.md`](projet/docs/contexts.md).
+Architecture decisions live in [`projet/docs/adr/`](projet/docs/adr/), the ubiquitous language in [`projet/docs/glossary.md`](projet/docs/glossary.md), the contexts in [`projet/docs/contexts.md`](projet/docs/contexts.md), their relationships in [`projet/docs/context-map.md`](projet/docs/context-map.md).
 
 ## Layout
 
@@ -39,12 +39,13 @@ Architecture decisions live in [`projet/docs/adr/`](projet/docs/adr/), the ubiqu
   - `ep01-mutation/`: a throwaway rule to show unit tests and mutation testing.
   - `ep01-casse/`: the episode 1 breakages, to replay yourself, and the challenge.
   - `ep02-casse/`: the episode 2 breakage (a folder name the glossary forbids).
+  - `ep03-casse/`: the episode 3 breakage (a context that imports the code of another one).
 
-Each episode matches an `ep-NN` tag: you can pick up the series at any episode (`git checkout ep-02`).
+Each episode matches an `ep-NN` tag: you can pick up the series at any episode (`git checkout ep-03`).
 
-## Status at tag `ep-02`
+## Status at tag `ep-03`
 
-The episode 1 quality foundation, plus the split by business: subdomains and contexts in [`projet/docs/contexts.md`](projet/docs/contexts.md), three coded contexts (`Listing`, `Booking`, `Rental`, one status enum each) and a naming test that keeps the glossary and the folders of `src/` consistent.
+The episode 1 quality foundation and the episode 2 split (seven contexts in [`projet/docs/contexts.md`](projet/docs/contexts.md), three of them coded: `Listing`, `Booking`, `Rental`), plus the context map: their relationships in [`projet/docs/context-map.md`](projet/docs/context-map.md), and one Deptrac layer per context that forbids any import from one context into another.
 
 ## License
 
