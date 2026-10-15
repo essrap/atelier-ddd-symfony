@@ -1,13 +1,11 @@
-# Architecture rules. Episode 1: the domain depends neither on Symfony nor on Doctrine.
-# Boundaries between bounded contexts come in episode 3, the full layer rules in episode 17.
+# Architecture rules.
+# Episode 3: a bounded context may only use itself and the shared kernel (docs/context-map.md).
+# It keeps the rule of episode 1: no context depends on Symfony or Doctrine.
+# The full layer rules (domain, application, infrastructure) come in episode 17.
 deptrac:
   paths:
     - ./src
   layers:
-    - name: Domain
-      collectors:
-        - type: directory
-          value: src/.*/Domain/.*
     - name: Symfony
       collectors:
         - type: classNameRegex
@@ -16,5 +14,46 @@ deptrac:
       collectors:
         - type: classNameRegex
           value: '#^Doctrine\\#'
+    # One layer per bounded context, the seven names of docs/contexts.md.
+    - name: Listing
+      collectors:
+        - type: directory
+          value: src/Listing/.*
+    - name: Booking
+      collectors:
+        - type: directory
+          value: src/Booking/.*
+    - name: Rental
+      collectors:
+        - type: directory
+          value: src/Rental/.*
+    - name: Payment
+      collectors:
+        - type: directory
+          value: src/Payment/.*
+    - name: Dispute
+      collectors:
+        - type: directory
+          value: src/Dispute/.*
+    - name: Review
+      collectors:
+        - type: directory
+          value: src/Review/.*
+    - name: Identity
+      collectors:
+        - type: directory
+          value: src/Identity/.*
+    - name: SharedKernel
+      collectors:
+        - type: directory
+          value: src/Shared/Domain/.*
   ruleset:
-    Domain: ~
+    # A context may only use itself and the shared kernel.
+    Listing: [SharedKernel]
+    Booking: [SharedKernel]
+    Rental: [SharedKernel]
+    Payment: [SharedKernel]
+    Dispute: [SharedKernel]
+    Review: [SharedKernel]
+    Identity: [SharedKernel]
+    SharedKernel: ~
