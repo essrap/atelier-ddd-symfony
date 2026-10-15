@@ -1,0 +1,26 @@
+diff --git a/projet/src/Rental/Domain/RentalStatus.php b/projet/src/Rental/Domain/RentalStatus.php
+index 9561d75..12f4ea0 100644
+--- a/projet/src/Rental/Domain/RentalStatus.php
++++ b/projet/src/Rental/Domain/RentalStatus.php
+@@ -4,6 +4,8 @@ declare(strict_types=1);
+ 
+ namespace App\Rental\Domain;
+ 
++use App\Booking\Domain\BookingStatus;
++
+ /**
+  * A rental starts once a booking is confirmed. Here "booked" is only the state
+  * before the pickup: the same word as in the Booking context, another model.
+@@ -13,4 +15,12 @@ enum RentalStatus: string
+     case Booked = 'booked';
+     case PickedUp = 'picked_up';
+     case Returned = 'returned';
++
++    /**
++     * Shortcut: a rental reads the booking state straight from the Booking context.
++     */
++    public static function fromBooking(BookingStatus $status): ?self
++    {
++        return BookingStatus::Confirmed === $status ? self::Booked : null;
++    }
+ }
