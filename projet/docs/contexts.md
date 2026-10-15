@@ -20,6 +20,8 @@ Le découpage est un choix assumé pour cet atelier, pas la seule réponse possi
 
 Coded so far: `Listing`, `Booking`, `Rental`. The other four are declared here and built in later episodes.
 
+How the contexts relate to each other: [context-map.md](context-map.md).
+
 ## One word, two models: "Booking"
 
 | Context | What the word means | Code |
