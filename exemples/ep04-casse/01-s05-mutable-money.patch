@@ -1,0 +1,15 @@
+diff --git a/projet/src/Shared/Domain/Money.php b/projet/src/Shared/Domain/Money.php
+index 63185ca..91b474c 100644
+--- a/projet/src/Shared/Domain/Money.php
++++ b/projet/src/Shared/Domain/Money.php
+@@ -28,7 +28,9 @@ final readonly class Money
+     {
+         $this->assertSameCurrency($other);
+ 
+-        return new self($this->minorAmount + $other->minorAmount, $this->currency);
++        $this->minorAmount += $other->minorAmount;
++
++        return $this;
+     }
+ 
+     public function multiply(int $factor): self
