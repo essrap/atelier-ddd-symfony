@@ -28,7 +28,7 @@ Du moins coûteux au plus coûteux, en local comme dans la CI :
 3. PHPStan au niveau maximal, sans baseline
 4. Deptrac : aucun contexte n'importe le code d'un autre (seul le noyau partagé est commun), ni Symfony, ni Doctrine
 5. PHPUnit
-6. Infection (tests de mutation), score minimal de 85 %
+6. Infection (tests de mutation) sur le domaine du projet (`src/*/Domain`) et sur les exemples, score minimal de 85 %
 
 Les décisions d'architecture sont dans [`projet/docs/adr/`](projet/docs/adr/), le vocabulaire métier dans [`projet/docs/glossary.md`](projet/docs/glossary.md), les contextes dans [`projet/docs/contexts.md`](projet/docs/contexts.md), leurs relations dans [`projet/docs/context-map.md`](projet/docs/context-map.md).
 
@@ -40,12 +40,13 @@ Les décisions d'architecture sont dans [`projet/docs/adr/`](projet/docs/adr/), 
   - `ep01-casse/` : les cassures de l'épisode 1, à rejouer soi-même, et le défi.
   - `ep02-casse/` : la cassure de l'épisode 2 (un nom de dossier que le glossaire interdit).
   - `ep03-casse/` : la cassure de l'épisode 3 (un contexte qui importe le code d'un autre).
+  - `ep04-casse/` : la cassure de l'épisode 4 (un objet valeur que l'on modifie au lieu d'en créer un nouveau).
 
-Chaque épisode correspond à un tag `ep-NN` : tu peux reprendre la série à n'importe quel épisode (`git checkout ep-03`).
+Chaque épisode correspond à un tag `ep-NN` : tu peux reprendre la série à n'importe quel épisode (`git checkout ep-04`).
 
-## État au tag `ep-03`
+## État au tag `ep-04`
 
-Le socle qualité de l'épisode 1 et le découpage de l'épisode 2 (sept contextes dans [`projet/docs/contexts.md`](projet/docs/contexts.md), trois codés : `Listing`, `Booking`, `Rental`), plus la carte des contextes : leurs relations dans [`projet/docs/context-map.md`](projet/docs/context-map.md), et une couche Deptrac par contexte qui interdit tout import d'un contexte vers un autre.
+Le socle qualité de l'épisode 1 et le découpage de l'épisode 2 (sept contextes dans [`projet/docs/contexts.md`](projet/docs/contexts.md), trois codés : `Listing`, `Booking`, `Rental`), plus la carte des contextes : leurs relations dans [`projet/docs/context-map.md`](projet/docs/context-map.md), et une couche Deptrac par contexte qui interdit tout import d'un contexte vers un autre. Depuis l'épisode 4, les premiers objets valeur : `Money` dans le noyau partagé (montant en centimes et devise) et `Slot` dans `Booking` (un créneau), avec les tests de mutation sur le domaine du projet.
 
 ## Licence
 

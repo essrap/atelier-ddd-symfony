@@ -28,7 +28,7 @@ From the cheapest to the most expensive, locally and in the CI:
 3. PHPStan at the maximum level, without baseline
 4. Deptrac: no context imports the code of another one (only the shared kernel is common), nor Symfony, nor Doctrine
 5. PHPUnit
-6. Infection (mutation testing), minimum score of 85 %
+6. Infection (mutation testing) on the project domain (`src/*/Domain`) and on the examples, minimum score of 85 %
 
 Architecture decisions live in [`projet/docs/adr/`](projet/docs/adr/), the ubiquitous language in [`projet/docs/glossary.md`](projet/docs/glossary.md), the contexts in [`projet/docs/contexts.md`](projet/docs/contexts.md), their relationships in [`projet/docs/context-map.md`](projet/docs/context-map.md).
 
@@ -40,12 +40,13 @@ Architecture decisions live in [`projet/docs/adr/`](projet/docs/adr/), the ubiqu
   - `ep01-casse/`: the episode 1 breakages, to replay yourself, and the challenge.
   - `ep02-casse/`: the episode 2 breakage (a folder name the glossary forbids).
   - `ep03-casse/`: the episode 3 breakage (a context that imports the code of another one).
+  - `ep04-casse/`: the episode 4 breakage (a value object changed in place instead of a new one).
 
-Each episode matches an `ep-NN` tag: you can pick up the series at any episode (`git checkout ep-03`).
+Each episode matches an `ep-NN` tag: you can pick up the series at any episode (`git checkout ep-04`).
 
-## Status at tag `ep-03`
+## Status at tag `ep-04`
 
-The episode 1 quality foundation and the episode 2 split (seven contexts in [`projet/docs/contexts.md`](projet/docs/contexts.md), three of them coded: `Listing`, `Booking`, `Rental`), plus the context map: their relationships in [`projet/docs/context-map.md`](projet/docs/context-map.md), and one Deptrac layer per context that forbids any import from one context into another.
+The episode 1 quality foundation and the episode 2 split (seven contexts in [`projet/docs/contexts.md`](projet/docs/contexts.md), three of them coded: `Listing`, `Booking`, `Rental`), plus the context map: their relationships in [`projet/docs/context-map.md`](projet/docs/context-map.md), and one Deptrac layer per context that forbids any import from one context into another. Since episode 4, the first value objects: `Money` in the shared kernel (an amount in minor units and its currency) and `Slot` in `Booking` (a time slot), with mutation testing on the project domain.
 
 ## License
 

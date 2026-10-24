@@ -37,7 +37,7 @@ Arrows go from upstream (U) to downstream (D): the direction of influence. A cha
 
 ## Shared kernel
 
-Kept minimal and owned by every context: identifiers and `Money` (episode 4), in `src/Shared/Domain/`. Any change there involves every context, so nothing else goes in.
+Kept minimal and owned by every context: `Money` (episode 4) and, with the first entity (episode 5), identifiers, in `src/Shared/Domain/`. Any change there involves every context, so nothing else goes in.
 
 `src/Shared/Infrastructure/` is technical plumbing (HTTP, kernel), not a shared kernel.
 
