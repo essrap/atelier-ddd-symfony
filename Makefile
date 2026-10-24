@@ -32,6 +32,7 @@ qa-project: ## Quality gates of the Tooloc project
 	$(PHP) vendor/bin/phpstan analyse --no-progress
 	$(PHP) vendor/bin/deptrac analyse --no-progress
 	$(PHP) bin/phpunit
+	$(PHP) vendor/bin/infection --threads=max --no-progress --show-mutations=0
 
 qa-examples: ## Quality gates of the isolated examples
 	@for dir in $(EXAMPLES); do \

@@ -20,3 +20,4 @@ Until the first domain code arrives (episode 4), Infection runs on the isolated 
 
 - `make qa` and the CI run Infection from episode 1.
 - The 30-day rule never becomes a Tooloc business rule.
+- From episode 4, the example keeps its own Infection run and score, separate from the score of the project domain.
