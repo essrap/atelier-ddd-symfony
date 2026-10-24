@@ -8,7 +8,8 @@ Le code est en anglais, les vidéos en français : ce glossaire fait foi dans le
 | `Owner` | Loueur | Person (individual or professional) who offers equipment for rent | — |
 | `Renter` | Locataire | Person who books and uses the equipment | `Customer` |
 | `Equipment` | Matériel | Item offered for rent, with a category, a description and a declared value | `Item` |
-| `Listing` | Annonce | Equipment published with a price, availabilities and a deposit amount | `Announcement`, `Ad` |
+| `Listing` | Annonce | Equipment published with a price, availabilities and a deposit amount; born as a draft, then published, then withdrawn for good | `Announcement`, `Ad` |
+| `ListingId` | Identifiant d'annonce | Identity of a listing, a lowercase UUID; other contexts refer to a listing by it | — |
 | `Availability` | Disponibilité | Time slots during which the equipment can be rented | — |
 | `Slot` | Créneau | Dated period, start included, end excluded: a slot ending at 2 pm and one starting at 2 pm do not overlap | — |
 | `Booking` | Réservation | A renter's commitment on a slot of a listing | `Reservation` |

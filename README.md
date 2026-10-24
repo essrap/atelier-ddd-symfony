@@ -41,12 +41,13 @@ Les décisions d'architecture sont dans [`projet/docs/adr/`](projet/docs/adr/), 
   - `ep02-casse/` : la cassure de l'épisode 2 (un nom de dossier que le glossaire interdit).
   - `ep03-casse/` : la cassure de l'épisode 3 (un contexte qui importe le code d'un autre).
   - `ep04-casse/` : la cassure de l'épisode 4 (un objet valeur que l'on modifie au lieu d'en créer un nouveau).
+  - `ep05-casse/` : la cassure de l'épisode 5 (une entité qui perd la garde d'une de ses règles).
 
-Chaque épisode correspond à un tag `ep-NN` : tu peux reprendre la série à n'importe quel épisode (`git checkout ep-04`).
+Chaque épisode correspond à un tag `ep-NN` : tu peux reprendre la série à n'importe quel épisode (`git checkout ep-05`).
 
-## État au tag `ep-04`
+## État au tag `ep-05`
 
-Le socle qualité de l'épisode 1 et le découpage de l'épisode 2 (sept contextes dans [`projet/docs/contexts.md`](projet/docs/contexts.md), trois codés : `Listing`, `Booking`, `Rental`), plus la carte des contextes : leurs relations dans [`projet/docs/context-map.md`](projet/docs/context-map.md), et une couche Deptrac par contexte qui interdit tout import d'un contexte vers un autre. Depuis l'épisode 4, les premiers objets valeur : `Money` dans le noyau partagé (montant en centimes et devise) et `Slot` dans `Booking` (un créneau), avec les tests de mutation sur le domaine du projet.
+Le socle qualité de l'épisode 1 et le découpage de l'épisode 2 (sept contextes dans [`projet/docs/contexts.md`](projet/docs/contexts.md), trois codés : `Listing`, `Booking`, `Rental`), plus la carte des contextes : leurs relations dans [`projet/docs/context-map.md`](projet/docs/context-map.md), et une couche Deptrac par contexte qui interdit tout import d'un contexte vers un autre. Depuis l'épisode 4, les premiers objets valeur : `Money` dans le noyau partagé (montant en centimes et devise) et `Slot` dans `Booking` (un créneau), avec les tests de mutation sur le domaine du projet. Depuis l'épisode 5, la première entité : `Listing` (une annonce), avec son identifiant typé `ListingId` dans le noyau partagé, un constructeur nommé, des méthodes métier à la place des setters (`publish`, `withdraw`, `changeDailyPrice`) et une exception métier, `ListingRuleBroken`.
 
 ## Licence
 

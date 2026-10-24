@@ -41,12 +41,13 @@ Architecture decisions live in [`projet/docs/adr/`](projet/docs/adr/), the ubiqu
   - `ep02-casse/`: the episode 2 breakage (a folder name the glossary forbids).
   - `ep03-casse/`: the episode 3 breakage (a context that imports the code of another one).
   - `ep04-casse/`: the episode 4 breakage (a value object changed in place instead of a new one).
+  - `ep05-casse/`: the episode 5 breakage (an entity that loses the guard of one of its rules).
 
-Each episode matches an `ep-NN` tag: you can pick up the series at any episode (`git checkout ep-04`).
+Each episode matches an `ep-NN` tag: you can pick up the series at any episode (`git checkout ep-05`).
 
-## Status at tag `ep-04`
+## Status at tag `ep-05`
 
-The episode 1 quality foundation and the episode 2 split (seven contexts in [`projet/docs/contexts.md`](projet/docs/contexts.md), three of them coded: `Listing`, `Booking`, `Rental`), plus the context map: their relationships in [`projet/docs/context-map.md`](projet/docs/context-map.md), and one Deptrac layer per context that forbids any import from one context into another. Since episode 4, the first value objects: `Money` in the shared kernel (an amount in minor units and its currency) and `Slot` in `Booking` (a time slot), with mutation testing on the project domain.
+The episode 1 quality foundation and the episode 2 split (seven contexts in [`projet/docs/contexts.md`](projet/docs/contexts.md), three of them coded: `Listing`, `Booking`, `Rental`), plus the context map: their relationships in [`projet/docs/context-map.md`](projet/docs/context-map.md), and one Deptrac layer per context that forbids any import from one context into another. Since episode 4, the first value objects: `Money` in the shared kernel (an amount in minor units and its currency) and `Slot` in `Booking` (a time slot), with mutation testing on the project domain. Since episode 5, the first entity: `Listing`, with its typed identifier `ListingId` in the shared kernel, a named constructor, business methods instead of setters (`publish`, `withdraw`, `changeDailyPrice`) and a business exception, `ListingRuleBroken`.
 
 ## License
 
