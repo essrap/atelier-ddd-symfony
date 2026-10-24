@@ -1,0 +1,15 @@
+diff --git a/projet/src/Listing/Domain/Listing.php b/projet/src/Listing/Domain/Listing.php
+index 8c0ee74..b773f7d 100644
+--- a/projet/src/Listing/Domain/Listing.php
++++ b/projet/src/Listing/Domain/Listing.php
+@@ -33,10 +33,6 @@ final class Listing
+ 
+     public function publish(): void
+     {
+-        if (ListingStatus::Draft !== $this->status) {
+-            throw ListingRuleBroken::cannotPublish($this->status);
+-        }
+-
+         $this->status = ListingStatus::Published;
+     }
+ 
