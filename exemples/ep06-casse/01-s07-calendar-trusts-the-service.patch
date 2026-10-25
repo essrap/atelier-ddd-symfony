@@ -1,0 +1,16 @@
+diff --git a/projet/src/Booking/Domain/BookingCalendar.php b/projet/src/Booking/Domain/BookingCalendar.php
+index 3d99d08..f8c2c68 100644
+--- a/projet/src/Booking/Domain/BookingCalendar.php
++++ b/projet/src/Booking/Domain/BookingCalendar.php
+@@ -29,11 +29,6 @@ final class BookingCalendar
+         if (isset($this->bookings[$id->toString()])) {
+             throw BookingRuleBroken::alreadyBooked($id);
+         }
+-        foreach ($this->bookings as $booking) {
+-            if ($booking->blocks($slot)) {
+-                throw BookingRuleBroken::slotTaken();
+-            }
+-        }
+ 
+         $this->bookings[$id->toString()] = Booking::confirmed($id, $slot);
+     }
