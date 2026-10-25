@@ -13,6 +13,7 @@ Le code est en anglais, les vidéos en français : ce glossaire fait foi dans le
 | `Availability` | Disponibilité | Time slots during which the equipment can be rented | — |
 | `Slot` | Créneau | Dated period, start included, end excluded: a slot ending at 2 pm and one starting at 2 pm do not overlap | — |
 | `Booking` | Réservation | A renter's commitment on a slot of a listing | `Reservation` |
+| `BookingCalendar` | Calendrier de réservations | The bookings of one listing; aggregate root that refuses any booking overlapping another one | — |
 | `Pickup` / `Return` | Retrait / Restitution | Handing the equipment over at the start / back at the end, confirmed by a code | — |
 | `Rental` | Location | Actual period between pickup and return | — |
 | `Deposit` | Caution | Amount held until the equipment is returned without dispute | — |
