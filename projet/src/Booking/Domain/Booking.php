@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Booking\Domain;
 
 /**
- * A renter's commitment on a slot. It lives inside a BookingCalendar, which alone creates and changes it.
+ * A renter's commitment on a slot. By convention, only its BookingCalendar creates and changes it.
  */
 final class Booking
 {

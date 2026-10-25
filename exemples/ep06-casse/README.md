@@ -2,7 +2,7 @@
 
 *English below.*
 
-Le correctif retire de la méthode `book()` de `projet/src/Booking/Domain/BookingCalendar.php` la boucle qui refuse un créneau déjà pris, « parce qu'un service applicatif le vérifie déjà ». Le calendrier, racine de l'agrégat, ne garde plus la règle : deux réservations d'une même annonce peuvent alors se chevaucher. PHPStan reste vert : le typage est intact. Le dépôt, lui, reste toujours vert.
+Le correctif retire de la méthode `book()` de `projet/src/Booking/Domain/BookingCalendar.php` la boucle qui refuse un créneau déjà pris, « parce qu'un service applicatif le vérifie déjà ». Le calendrier, racine de l'agrégat, ne garde plus la règle : deux réservations d'une même annonce peuvent alors se chevaucher. PHPStan reste vert : le typage est intact. Le dépôt publié, sans le correctif, reste vert.
 
 ```bash
 git apply exemples/ep06-casse/01-s07-calendar-trusts-the-service.patch   # casser
