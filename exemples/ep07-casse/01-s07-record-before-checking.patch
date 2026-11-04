@@ -1,0 +1,20 @@
+diff --git a/projet/src/Booking/Domain/BookingCalendar.php b/projet/src/Booking/Domain/BookingCalendar.php
+index 42cc60d..cbd622a 100644
+--- a/projet/src/Booking/Domain/BookingCalendar.php
++++ b/projet/src/Booking/Domain/BookingCalendar.php
+@@ -29,6 +29,7 @@ final class BookingCalendar
+ 
+     public function book(BookingId $id, Slot $slot, \DateTimeImmutable $now): void
+     {
++        $this->record(new SlotBooked($this->listingId, $id, $slot, $now));
+         if (isset($this->bookings[$id->toString()])) {
+             throw BookingRuleBroken::alreadyBooked($id);
+         }
+@@ -39,7 +40,6 @@ final class BookingCalendar
+         }
+ 
+         $this->bookings[$id->toString()] = Booking::confirmed($id, $slot);
+-        $this->record(new SlotBooked($this->listingId, $id, $slot, $now));
+     }
+ 
+     public function cancel(BookingId $id, \DateTimeImmutable $now): void
