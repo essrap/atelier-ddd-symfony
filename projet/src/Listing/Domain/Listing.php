@@ -6,6 +6,7 @@ namespace App\Listing\Domain;
 
 use App\Shared\Domain\ListingId;
 use App\Shared\Domain\Money;
+use App\Shared\Domain\RecordsEvents;
 
 /**
  * Equipment offered for rent. An entity: it keeps its identity while its price and status change.
@@ -13,6 +14,8 @@ use App\Shared\Domain\Money;
  */
 final class Listing
 {
+    use RecordsEvents;
+
     private function __construct(
         public readonly ListingId $id,
         public private(set) string $title,
@@ -31,13 +34,14 @@ final class Listing
         return new self($id, trim($title), $dailyPrice, $deposit, ListingStatus::Draft);
     }
 
-    public function publish(): void
+    public function publish(\DateTimeImmutable $now): void
     {
         if (ListingStatus::Draft !== $this->status) {
             throw ListingRuleBroken::cannotPublish($this->status);
         }
 
         $this->status = ListingStatus::Published;
+        $this->record(new ListingPublished($this->id, $now));
     }
 
     public function withdraw(): void

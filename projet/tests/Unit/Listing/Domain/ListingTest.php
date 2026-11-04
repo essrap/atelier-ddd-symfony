@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Unit\Listing\Domain;
 
 use App\Listing\Domain\Listing;
+use App\Listing\Domain\ListingPublished;
 use App\Listing\Domain\ListingRuleBroken;
 use App\Listing\Domain\ListingStatus;
 use App\Shared\Domain\Currency;
@@ -55,37 +56,72 @@ final class ListingTest extends TestCase
     {
         $listing = $this->drill();
 
-        $listing->publish();
+        $listing->publish($this->now());
 
         self::assertSame(ListingStatus::Published, $listing->status);
+    }
+
+    public function testRecordsThatItIsPublished(): void
+    {
+        $listing = $this->drill();
+
+        $listing->publish($this->now());
+
+        self::assertEquals([new ListingPublished($listing->id, $this->now())], $listing->releaseEvents());
+    }
+
+    public function testReleasesThePublicationOnlyOnce(): void
+    {
+        $listing = $this->drill();
+        $listing->publish($this->now());
+
+        $listing->releaseEvents();
+
+        self::assertSame([], $listing->releaseEvents());
+    }
+
+    public function testRecordsNoEventForARefusedPublication(): void
+    {
+        $listing = $this->drill();
+        $listing->publish($this->now());
+        $listing->withdraw();
+        $listing->releaseEvents();
+
+        try {
+            $listing->publish($this->now());
+            self::fail('Publishing a withdrawn listing should have been refused.');
+        } catch (ListingRuleBroken) {
+        }
+
+        self::assertSame([], $listing->releaseEvents());
     }
 
     public function testCannotPublishTwice(): void
     {
         $listing = $this->drill();
-        $listing->publish();
+        $listing->publish($this->now());
 
         $this->expectExceptionObject(ListingRuleBroken::cannotPublish(ListingStatus::Published));
 
-        $listing->publish();
+        $listing->publish($this->now());
     }
 
     public function testCannotRepublishAWithdrawnListing(): void
     {
         $listing = $this->drill();
-        $listing->publish();
+        $listing->publish($this->now());
         $listing->withdraw();
 
         $this->expectExceptionObject(ListingRuleBroken::cannotPublish(ListingStatus::Withdrawn));
 
-        $listing->publish();
+        $listing->publish($this->now());
     }
 
     public function testWithdrawsADraftOrAPublishedListing(): void
     {
         $draft = $this->drill();
         $published = $this->drill();
-        $published->publish();
+        $published->publish($this->now());
 
         $draft->withdraw();
         $published->withdraw();
@@ -154,5 +190,10 @@ final class ListingTest extends TestCase
     private function euros(int $cents): Money
     {
         return Money::of($cents, Currency::EUR);
+    }
+
+    private function now(): \DateTimeImmutable
+    {
+        return new \DateTimeImmutable('2026-11-04 09:30');
     }
 }
