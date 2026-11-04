@@ -43,12 +43,13 @@ Architecture decisions live in [`projet/docs/adr/`](projet/docs/adr/), the ubiqu
   - `ep04-casse/`: the episode 4 breakage (a value object changed in place instead of a new one).
   - `ep05-casse/`: the episode 5 breakage (an entity that loses the guard of one of its rules).
   - `ep06-casse/`: the episode 6 breakage (an aggregate that no longer guards its rule).
+  - `ep07-casse/`: the episode 7 breakage (an event recorded before the rule allows it).
 
-Each episode matches an `ep-NN` tag: you can pick up the series at any episode (`git checkout ep-06`).
+Each episode matches an `ep-NN` tag: you can pick up the series at any episode (`git checkout ep-07`).
 
-## Status at tag `ep-06`
+## Status at tag `ep-07`
 
-The episode 1 quality foundation and the episode 2 split (seven contexts in [`projet/docs/contexts.md`](projet/docs/contexts.md), three of them coded: `Listing`, `Booking`, `Rental`), plus the context map: their relationships in [`projet/docs/context-map.md`](projet/docs/context-map.md), and one Deptrac layer per context that forbids any import from one context into another. Since episode 4, the first value objects: `Money` in the shared kernel (an amount in minor units and its currency) and `Slot` in `Booking` (a time slot), with mutation testing on the project domain. Since episode 5, the first entity: `Listing`, with its typed identifier `ListingId` in the shared kernel, a named constructor, business methods instead of setters (`publish`, `withdraw`, `changeDailyPrice`) and a business exception, `ListingRuleBroken`. Since episode 6, the first aggregate: `BookingCalendar`, the bookings of one listing, which refuses any booking that overlaps another one and knows the listing only by its `ListingId`.
+The episode 1 quality foundation and the episode 2 split (seven contexts in [`projet/docs/contexts.md`](projet/docs/contexts.md), three of them coded: `Listing`, `Booking`, `Rental`), plus the context map: their relationships in [`projet/docs/context-map.md`](projet/docs/context-map.md), and one Deptrac layer per context that forbids any import from one context into another. Since episode 4, the first value objects: `Money` in the shared kernel (an amount in minor units and its currency) and `Slot` in `Booking` (a time slot), with mutation testing on the project domain. Since episode 5, the first entity: `Listing`, with its typed identifier `ListingId` in the shared kernel, a named constructor, business methods instead of setters (`publish`, `withdraw`, `changeDailyPrice`) and a business exception, `ListingRuleBroken`. Since episode 6, the first aggregate: `BookingCalendar`, the bookings of one listing, which refuses any booking that overlaps another one and knows the listing only by its `ListingId`. Since episode 7, the first domain events: `SlotBooked`, `BookingCancelled` and `ListingPublished`, immutable facts named in the past tense (`DomainEvent` interface in the shared kernel). The aggregate records them after checking its rules (`RecordsEvents` trait), and the caller collects them with `releaseEvents()` to publish them once the aggregate is saved. The caller gives the time: `book`, `cancel` and `publish` take a `$now` argument. Nobody listens to these events yet.
 
 ## License
 

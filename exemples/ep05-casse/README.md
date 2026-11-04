@@ -4,6 +4,8 @@
 
 Le correctif retire, « pour aller plus vite », la garde de la méthode `publish()` de `projet/src/Listing/Domain/Listing.php` : seule une annonce en brouillon pouvait être publiée. Sans elle, une annonce retirée peut être republiée. Le code compile et PHPStan reste vert : le typage est intact, seule la règle métier tombe. Le dépôt, lui, reste toujours vert.
 
+Le correctif s'applique sur le tag `ep-05` (`git checkout ep-05`) : le code a changé depuis.
+
 ```bash
 git apply exemples/ep05-casse/01-s06-publish-without-guard.patch   # casser
 make qa                                                            # lire l'échec
@@ -21,5 +23,7 @@ tous deux avec `Failed asserting that exception of type "App\Listing\Domain\List
 Pour réparer, retire le correctif (`git apply -R exemples/ep05-casse/01-s06-publish-without-guard.patch`) et relance `make qa`.
 
 ## English
+
+The patch applies to the `ep-05` tag (`git checkout ep-05`): the code has changed since.
 
 The patch removes, "to go faster", the guard of the `publish()` method in `projet/src/Listing/Domain/Listing.php`: only a draft could be published. Without it, a withdrawn listing can be published again. It compiles and PHPStan stays green. Apply it with `git apply`, run `make qa`: PHPUnit fails twice (`testCannotPublishTwice`, `testCannotRepublishAWithdrawnListing`: `Failed asserting that exception of type "App\Listing\Domain\ListingRuleBroken" is thrown.`). `public private(set)` cannot help here: the change comes from the listing itself, and only the tests catch it. Fix it by reverting the patch (`git apply -R`).
