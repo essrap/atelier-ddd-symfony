@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Booking\Domain;
 
 use App\Shared\Domain\ListingId;
+use App\Shared\Domain\RecordsEvents;
 
 /**
  * The bookings of one listing. Aggregate root: the only way in, so the only place
@@ -12,6 +13,8 @@ use App\Shared\Domain\ListingId;
  */
 final class BookingCalendar
 {
+    use RecordsEvents;
+
     /** @var array<string, Booking> */
     private array $bookings = [];
 
@@ -24,7 +27,7 @@ final class BookingCalendar
         return new self($listingId);
     }
 
-    public function book(BookingId $id, Slot $slot): void
+    public function book(BookingId $id, Slot $slot, \DateTimeImmutable $now): void
     {
         if (isset($this->bookings[$id->toString()])) {
             throw BookingRuleBroken::alreadyBooked($id);
@@ -36,12 +39,14 @@ final class BookingCalendar
         }
 
         $this->bookings[$id->toString()] = Booking::confirmed($id, $slot);
+        $this->record(new SlotBooked($this->listingId, $id, $slot, $now));
     }
 
-    public function cancel(BookingId $id): void
+    public function cancel(BookingId $id, \DateTimeImmutable $now): void
     {
         $booking = $this->bookings[$id->toString()] ?? throw BookingRuleBroken::unknownBooking($id);
 
         $booking->cancel();
+        $this->record(new BookingCancelled($this->listingId, $id, $now));
     }
 }
