@@ -11,10 +11,12 @@ Le code est en anglais, les vidéos en français : ce glossaire fait foi dans le
 | `Listing` | Annonce | Equipment published with a price, availabilities and a deposit amount; born as a draft, then published, then withdrawn for good | `Announcement`, `Ad` |
 | `ListingId` | Identifiant d'annonce | Identity of a listing, a lowercase UUID; other contexts refer to a listing by it | — |
 | `ListingPublished` | Annonce publiée | Event: a listing has been published | — |
+| `Listings` | Dépôt des annonces | Repository of the listings: finds and saves a whole listing, without the domain knowing how it is stored | — |
 | `Availability` | Disponibilité | Time slots during which the equipment can be rented | — |
 | `Slot` | Créneau | Dated period, start included, end excluded: a slot ending at 2 pm and one starting at 2 pm do not overlap | — |
 | `Booking` | Réservation | A renter's commitment on a slot of a listing | `Reservation` |
 | `BookingCalendar` | Calendrier de réservations | The bookings of one listing; aggregate root that refuses any booking overlapping another one | — |
+| `BookingCalendars` | Dépôt des calendriers | Repository of the booking calendars, one per listing; a booking is never found or saved on its own | — |
 | `SlotBooked` | Créneau réservé | Event: a slot of a listing has been booked | — |
 | `BookingCancelled` | Réservation annulée | Event: a booking has been cancelled, its slot is free again | — |
 | `Pickup` / `Return` | Retrait / Restitution | Handing the equipment over at the start / back at the end, confirmed by a code | — |
