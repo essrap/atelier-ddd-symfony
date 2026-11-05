@@ -1,0 +1,15 @@
+diff --git a/projet/src/Booking/Infrastructure/InMemoryBookingCalendars.php b/projet/src/Booking/Infrastructure/InMemoryBookingCalendars.php
+index db79516..49fbfd2 100644
+--- a/projet/src/Booking/Infrastructure/InMemoryBookingCalendars.php
++++ b/projet/src/Booking/Infrastructure/InMemoryBookingCalendars.php
+@@ -19,9 +19,7 @@ final class InMemoryBookingCalendars implements BookingCalendars
+ 
+     public function get(ListingId $listingId): BookingCalendar
+     {
+-        $calendar = $this->calendars[$listingId->toString()] ?? throw BookingCalendarNotFound::forListing($listingId);
+-
+-        return $this->copy($calendar);
++        return $this->calendars[$listingId->toString()] ?? throw BookingCalendarNotFound::forListing($listingId);
+     }
+ 
+     public function save(BookingCalendar $calendar): void
