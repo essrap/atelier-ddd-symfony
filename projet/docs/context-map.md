@@ -34,12 +34,13 @@ Arrows go from upstream (U) to downstream (D): the direction of influence. A cha
 ## Needs recorded, not yet built
 
 - `Rental` learns that a booking is confirmed from a published fact (episode 7), never by importing `BookingStatus`.
+- `Booking` opens the calendar of a listing once the listing is published (`OpenBookingCalendar`, episode 9). For now nothing triggers it: the published fact will, once messages are wired.
 
 ## Shared kernel
 
-Kept minimal and owned by every context: `Money` (episode 4) and identifiers such as `ListingId` (episode 5), in `src/Shared/Domain/`. Any change there involves every context, so nothing else goes in.
+Kept minimal and owned by every context: `Money` (episode 4), identifiers such as `ListingId` (episode 5), and the contracts of domain events, `DomainEvent` (episode 7) and `DomainEventPublisher` (episode 9), in `src/Shared/Domain/`. Any change there involves every context, so nothing else goes in.
 
-`src/Shared/Infrastructure/` is technical plumbing (HTTP, kernel), not a shared kernel.
+`src/Shared/Infrastructure/` is technical plumbing (HTTP, kernel, the in-memory event publisher), not a shared kernel.
 
 ## Rule in the code
 

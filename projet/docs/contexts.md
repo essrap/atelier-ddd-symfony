@@ -18,7 +18,7 @@ Le découpage est un choix assumé pour cet atelier, pas la seule réponse possi
 
 `Shared/` holds technical code used by every context (HTTP, kernel). It is not a context.
 
-Coded so far: `Listing`, `Booking`, `Rental`. The other four are declared here and built in later episodes.
+Coded so far: `Listing`, `Booking`, `Rental`, and the first rule of `Payment` (episode 9). The other three are declared here and built in later episodes.
 
 How the contexts relate to each other: [context-map.md](context-map.md).
 

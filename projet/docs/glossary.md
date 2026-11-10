@@ -23,10 +23,14 @@ Le code est en anglais, les vidéos en français : ce glossaire fait foi dans le
 | `Rental` | Location | Actual period between pickup and return | — |
 | `Deposit` | Caution | Amount held until the equipment is returned without dispute | — |
 | `Money` | Montant | Amount in minor units (cents) with its currency: 4.92 EUR is 492 | — |
-| `Commission` | Commission | Share of the paid price kept by the platform | — |
+| `Commission` | Commission | Share of the paid price kept by the platform; computed by `CommissionCalculator` | — |
+| `CommissionCalculator` | Calcul de la commission | Domain service that computes the `Commission` due on a payment: 10 % of the paid amount, rounded to the nearest cent, at least 1.00 of the same currency; a payment of 1.00 or less is refused | — |
 | `Dispute` | Litige | Claim opened by a party (damage, delay, non-compliant equipment) | — |
 | `Review` | Avis | Rating and comment left after a rental | — |
 | `DomainEvent` | Événement de domaine | Something that happened in the domain, named in the past tense, immutable; recorded by an aggregate only once its rules allowed the change | — |
+| `DomainEventPublisher` | Point de publication | Where an application service publishes the events an aggregate released, once it is saved; nobody listens yet | — |
+| Domain service | Service de domaine | Stateless operation, named after what it does in the business, for a rule that belongs to no object (`CommissionCalculator`) | — |
+| Application service | Service applicatif | Coordinates a use case (here, one class per use case): finds the aggregate, makes it act, saves it, then publishes its events; holds no business rule (`BookSlot`, `OpenBookingCalendar`) | — |
 
 The `Avoid (code)` column lists words that must not appear in folder, file or enum case names under `src/` (checked by `tests/Architecture/ContextNamingTest.php`).
 
