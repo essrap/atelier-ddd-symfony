@@ -1,0 +1,36 @@
+{
+    "name": "essrap/example-ep09-anemic",
+    "description": "Episode 9 example: an anemic model, where a service holds every rule and another one bypasses them",
+    "type": "project",
+    "license": "MIT",
+    "require": {
+        "php": ">=8.5"
+    },
+    "require-dev": {
+        "deptrac/deptrac": "^4.7.2",
+        "friendsofphp/php-cs-fixer": "^3.95.27",
+        "infection/infection": "^0.35.8",
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan": "^2.3.1",
+        "phpstan/phpstan-phpunit": "^2.1",
+        "phpstan/phpstan-strict-rules": "^2.1",
+        "phpunit/phpunit": "^13.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Example\\Ep09Anemic\\Before\\": "before/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Example\\Ep09Anemic\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "phpstan/extension-installer": true,
+            "infection/extension-installer": true
+        }
+    }
+}

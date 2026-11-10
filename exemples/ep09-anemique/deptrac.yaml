@@ -1,0 +1,20 @@
+# Architecture rules. Episode 9: an anemic model still keeps the domain free of Symfony and Doctrine.
+# Same rule as the project, applied to this isolated example: Deptrac does not see where the rules live.
+deptrac:
+  paths:
+    - ./before
+  layers:
+    - name: Before
+      collectors:
+        - type: directory
+          value: before/.*
+    - name: Symfony
+      collectors:
+        - type: classNameRegex
+          value: '#^Symfony\\#'
+    - name: Doctrine
+      collectors:
+        - type: classNameRegex
+          value: '#^Doctrine\\#'
+  ruleset:
+    Before: ~
