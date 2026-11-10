@@ -1,0 +1,13 @@
+diff --git a/projet/src/Booking/Application/BookSlot.php b/projet/src/Booking/Application/BookSlot.php
+index 6508025..91135f5 100644
+--- a/projet/src/Booking/Application/BookSlot.php
++++ b/projet/src/Booking/Application/BookSlot.php
+@@ -28,7 +28,7 @@ final readonly class BookSlot
+     ): void {
+         $calendar = $this->calendars->get($listingId);
+         $calendar->book($bookingId, $slot, $now);
+-        $this->calendars->save($calendar);
+         $this->publisher->publish(...$calendar->releaseEvents());
++        $this->calendars->save($calendar);
+     }
+ }
