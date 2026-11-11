@@ -4,6 +4,7 @@ parameters:
         - bin/console
         - config/
         - public/
+        - simulator/
         - src/
         - tests/
     excludePaths:

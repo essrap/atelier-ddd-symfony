@@ -47,13 +47,19 @@ deptrac:
       collectors:
         - type: directory
           value: src/Shared/Domain/.*
+    # Episode 10: the simulated payment provider, a third party only Payment may talk to.
+    - name: PaymentProvider
+      collectors:
+        - type: classNameRegex
+          value: '#^Simulator\\PaymentGateway\\#'
   ruleset:
-    # A context may only use itself and the shared kernel.
+    # A context may only use itself and the shared kernel; Payment also talks to the payment provider.
     Listing: [SharedKernel]
     Booking: [SharedKernel]
     Rental: [SharedKernel]
-    Payment: [SharedKernel]
+    Payment: [SharedKernel, PaymentProvider]
     Dispute: [SharedKernel]
     Review: [SharedKernel]
     Identity: [SharedKernel]
     SharedKernel: ~
+    PaymentProvider: ~
