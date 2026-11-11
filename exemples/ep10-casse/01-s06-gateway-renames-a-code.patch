@@ -1,0 +1,12 @@
+diff --git a/projet/simulator/PaymentGateway/Gateway.php b/projet/simulator/PaymentGateway/Gateway.php
+--- a/projet/simulator/PaymentGateway/Gateway.php
++++ b/projet/simulator/PaymentGateway/Gateway.php
+@@ -10,7 +10,7 @@
+  */
+ final class Gateway
+ {
+-    public const string INSUFFICIENT_FUNDS = 'insufficient_funds';
++    public const string INSUFFICIENT_FUNDS = 'not_enough_funds';
+     public const string EXPIRED_CARD = 'expired_card';
+ 
+     /**

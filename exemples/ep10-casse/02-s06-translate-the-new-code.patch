@@ -1,0 +1,12 @@
+diff --git a/projet/src/Payment/Infrastructure/GatewayDepositHolder.php b/projet/src/Payment/Infrastructure/GatewayDepositHolder.php
+--- a/projet/src/Payment/Infrastructure/GatewayDepositHolder.php
++++ b/projet/src/Payment/Infrastructure/GatewayDepositHolder.php
+@@ -51,7 +51,7 @@
+     private static function reason(string $code): DepositRefusalReason
+     {
+         return match ($code) {
+-            'insufficient_funds' => DepositRefusalReason::InsufficientFunds,
++            'not_enough_funds' => DepositRefusalReason::InsufficientFunds,
+             'expired_card' => DepositRefusalReason::CardExpired,
+             default => DepositRefusalReason::Other,
+         };
