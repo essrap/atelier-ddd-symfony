@@ -20,7 +20,7 @@ Since episode 8, aggregates can be found and saved, and since episode 7 they rel
 
 - A `Commission` value object computing itself: defensible, but what is being placed is a policy of the platform applied to an amount, not a value; the result stays a `Money`. `Money` is generic (shared kernel) and must not know the platform's policy; `Listing` neither, since the owner does not set the commission.
 - Capping the commission at the payment instead of refusing it: the owner would get nothing, silently.
-- The publishing contract as a port in the `Application` folder of each context: closer to who calls it, and the most common place, but one contract and one implementation per context. A shared application layer (`src/Shared/Application/`) would avoid that, but no Deptrac layer covers it today; the rules per layer come in episode 17.
+- The publishing contract as a port in the `Application` folder of each context: closer to who calls it, but one contract and one implementation per context. A shared application layer (`src/Shared/Application/`) would avoid that, but no Deptrac layer covers it today; the rules per layer come in episode 17.
 - A `has()` method on `BookingCalendars`: one more method on every implementation, for one caller.
 - Publishing before saving: a failed save would leave a published fact about a change that does not exist.
 
