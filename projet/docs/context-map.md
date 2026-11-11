@@ -28,7 +28,7 @@ Arrows go from upstream (U) to downstream (D): the direction of influence. A cha
 | `Booking` | `Rental` | Customer / supplier | A rental starts from a confirmed booking; `Booking` takes the needs of `Rental` into account |
 | `Rental` | `Payment`, `Review` | Published language | `Rental` publishes a documented, stable fact: `EquipmentReturned`. Listeners do not know `Rental` |
 | `Booking`, `Rental`, `Payment` | `Dispute` | Conformist | The core contexts will not change their model for a supporting one, and that model suits disputes: `Dispute` takes their concepts as they are |
-| Payment provider (external) | `Payment` | Anticorruption layer | The provider does not listen to us and its model is not ours: a layer translates it (episode 10) |
+| Payment provider (external) | `Payment` | Anticorruption layer | The provider does not listen to us and its model is not ours: `DepositHolder` states our need, `GatewayDepositHolder` translates it, and nothing else talks to the provider (episode 10, ADR 0007) |
 | `Identity` | every context | Conformist | Built on Symfony Security: every context takes its user as it is |
 
 ## Needs recorded, not yet built
@@ -46,4 +46,4 @@ Kept minimal and owned by every context: `Money` (episode 4), identifiers such a
 
 A relationship describes meaning, not imports: a conformist context reuses the concepts of its upstream (its words, its states), not its classes. So no context imports a class from another one; they only share the shared kernel, and will exchange published facts (episode 7).
 
-Deptrac enforces this rule (`deptrac.yaml`). It checks PHP imports only: neither the kind of relationship, nor shared tables, nor HTTP calls.
+Deptrac enforces this rule (`deptrac.yaml`), and only `Payment` may use the payment provider (the simulator of `simulator/PaymentGateway/`). It checks PHP imports only: neither the kind of relationship, nor shared tables, nor HTTP calls.

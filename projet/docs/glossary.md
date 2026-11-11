@@ -25,6 +25,8 @@ Le code est en anglais, les vidéos en français : ce glossaire fait foi dans le
 | `Money` | Montant | Amount in minor units (cents) with its currency: 4.92 EUR is 492 | — |
 | `Commission` | Commission | Share of the paid price kept by the platform; computed by `CommissionCalculator` | — |
 | `CommissionCalculator` | Calcul de la commission | Domain service that computes the `Commission` due on a payment: 10 % of the paid amount, rounded to the nearest cent, at least 1.00 of the same currency; a payment of 1.00 or less is refused | — |
+| `DepositHolder` | Garde de la caution | Contract of the domain that holds a `Deposit` before a rental and releases it afterwards; whoever does it outside speaks its own words (ADR 0007) | `PaymentGateway`, `PaymentProvider` |
+| `DepositRefused` | Caution refusée | The bank refused to hold a `Deposit`, for a reason of ours: insufficient funds, expired card, or other | — |
 | `Dispute` | Litige | Claim opened by a party (damage, delay, non-compliant equipment) | — |
 | `Review` | Avis | Rating and comment left after a rental | — |
 | `DomainEvent` | Événement de domaine | Something that happened in the domain, named in the past tense, immutable; recorded by an aggregate only once its rules allowed the change | — |
