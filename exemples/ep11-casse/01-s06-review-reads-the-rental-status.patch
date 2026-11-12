@@ -1,0 +1,35 @@
+diff --git a/projet/src/Review/Controller/ReviewController.php b/projet/src/Review/Controller/ReviewController.php
+index b439f3d..77ab730 100644
+--- a/projet/src/Review/Controller/ReviewController.php
++++ b/projet/src/Review/Controller/ReviewController.php
+@@ -4,6 +4,7 @@ declare(strict_types=1);
+ 
+ namespace App\Review\Controller;
+ 
++use App\Rental\Domain\RentalStatus;
+ use App\Review\Entity\Review;
+ use App\Review\Repository\ReviewRepository;
+ use Doctrine\ORM\EntityManagerInterface;
+@@ -20,6 +21,9 @@ final class ReviewController extends AbstractController
+     public function create(Request $request, ValidatorInterface $validator, EntityManagerInterface $em): JsonResponse
+     {
+         $data = $request->toArray();
++        if (RentalStatus::Returned->value !== ($data['rentalStatus'] ?? null)) {
++            return $this->json(['errors' => ['rentalStatus' => 'Only a returned rental can be reviewed.']], 422);
++        }
+ 
+         $review = new Review();
+         $review->setRentalReference(\is_string($data['rentalReference'] ?? null) ? $data['rentalReference'] : '');
+diff --git a/projet/tests/Functional/Review/ReviewTest.php b/projet/tests/Functional/Review/ReviewTest.php
+index c279dff..1eac48f 100644
+--- a/projet/tests/Functional/Review/ReviewTest.php
++++ b/projet/tests/Functional/Review/ReviewTest.php
+@@ -73,7 +73,7 @@ final class ReviewTest extends WebTestCase
+             'POST',
+             '/reviews',
+             server: ['CONTENT_TYPE' => 'application/json'],
+-            content: json_encode($payload, \JSON_THROW_ON_ERROR),
++            content: json_encode($payload + ['rentalStatus' => 'returned'], \JSON_THROW_ON_ERROR),
+         );
+     }
+ }
