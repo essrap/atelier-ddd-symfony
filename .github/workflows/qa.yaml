@@ -24,10 +24,10 @@ jobs:
       - name: Build the PHP image
         run: docker compose build php
 
-      # Composer checks, PHP-CS-Fixer, PHPStan, Deptrac, PHPUnit, Infection.
+      # Composer checks, PHP-CS-Fixer, PHPStan, Deptrac, PostgreSQL migrations
+      # on an empty test database and Doctrine schema check, PHPUnit, Infection.
       - name: Run every quality gate
         run: make qa
 
       # Coming later in the series:
-      # - database migrations on an empty database (once the project has entities);
       # - OpenAPI contract check (once the project exposes its API, episodes 21-23).

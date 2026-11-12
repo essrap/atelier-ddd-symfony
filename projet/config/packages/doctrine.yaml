@@ -9,7 +9,12 @@ doctrine:
         identity_generation_preferences:
             Doctrine\DBAL\Platforms\PostgreSQLPlatform: identity
         auto_mapping: true
-        mappings: {}
+        mappings:
+            Review:
+                type: attribute
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Review/Entity'
+                prefix: 'App\Review\Entity'
 
 when@test:
     doctrine:

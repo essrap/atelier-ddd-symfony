@@ -31,6 +31,10 @@ qa-project: ## Quality gates of the Tooloc project
 	$(PHP) bin/console cache:warmup --env=dev --quiet
 	$(PHP) vendor/bin/phpstan analyse --no-progress
 	$(PHP) vendor/bin/deptrac analyse --no-progress
+	$(DC) up -d --wait database
+	$(PHP) bin/console doctrine:database:create --if-not-exists --env=test --quiet
+	$(PHP) bin/console doctrine:migrations:migrate --no-interaction --env=test --quiet
+	$(PHP) bin/console doctrine:schema:validate --env=test
 	$(PHP) bin/phpunit
 	$(PHP) vendor/bin/infection --threads=max --no-progress --show-mutations=0
 
