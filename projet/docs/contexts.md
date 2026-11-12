@@ -13,12 +13,12 @@ Le découpage est un choix assumé pour cet atelier, pas la seule réponse possi
 | `Rental` | Location | supporting | Simple, CRUD allowed |
 | `Payment` | Paiement et caution | supporting | Simple, CRUD allowed |
 | `Dispute` | Litiges | supporting | Simple, CRUD allowed |
-| `Review` | Notation | generic | CRUD, nothing to differentiate |
+| `Review` | Notation | generic | Plain CRUD, nothing to differentiate (episode 11, ADR 0008) |
 | `Identity` | Identité | generic | Reuse Symfony Security |
 
 `Shared/` holds technical code used by every context (HTTP, kernel). It is not a context.
 
-Coded so far: `Listing`, `Booking`, `Rental`, and the first rules of `Payment` (episode 9: the commission; episode 10: the deposit, behind an anticorruption layer). The other three are declared here and built in later episodes.
+Coded so far: `Listing`, `Booking`, `Rental`, and the first rules of `Payment` (episode 9: the commission; episode 10: the deposit, behind an anticorruption layer), and `Review` as a plain CRUD (episode 11). The other two are declared here and built in later episodes.
 
 How the contexts relate to each other: [context-map.md](context-map.md).
 
