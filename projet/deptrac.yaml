@@ -1,6 +1,7 @@
 # Architecture rules.
 # Episode 3: a bounded context may only use itself and the shared kernel (docs/context-map.md).
-# It keeps the rule of episode 1: no context depends on Symfony or Doctrine.
+# It keeps the rule of episode 1: no context depends on Symfony or Doctrine, except Review,
+# a plain CRUD on purpose (episode 11, ADR 0008).
 # The full layer rules (domain, application, infrastructure) come in episode 17.
 deptrac:
   paths:
@@ -59,7 +60,8 @@ deptrac:
     Rental: [SharedKernel]
     Payment: [SharedKernel, PaymentProvider]
     Dispute: [SharedKernel]
-    Review: [SharedKernel]
+    # Episode 11: Review is a generic subdomain written as a plain CRUD, framework included.
+    Review: [SharedKernel, Doctrine, Symfony]
     Identity: [SharedKernel]
     SharedKernel: ~
     PaymentProvider: ~
